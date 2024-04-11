@@ -1,3 +1,10 @@
+# run below cmd inside \KSP Dasboard final> to install all pakages
+"npm i"
+
+# run below cmd inside \KSP Dasboard final\frontend> to install all pakages
+"npm i"
+
+
 # run below cmd inside \KSP Dasboard final> to start server
 "npm run dev"
 
