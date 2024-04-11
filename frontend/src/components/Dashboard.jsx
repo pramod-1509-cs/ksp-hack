@@ -148,6 +148,7 @@ const Dashboard = () => {
         topCase1no: response.data.topCase1no,
         topCase2no: response.data.topCase2no,
         topCase3no: response.data.topCase3no,
+        others: response.data.others,
         pendingTrial: response.data.pendingTrial,
         underInvestigation: response.data.underInvestigation,
         convicted: response.data.convicted,
@@ -278,7 +279,7 @@ const Dashboard = () => {
     { name: data.topCase1, value: parseInt(data.topCase1no) },
     { name: data.topCase2, value: parseInt(data.topCase2no) },
     { name: data.topCase3, value: parseInt(data.topCase3no) },
-    { name: "Others", value: 5 }, // You can keep this as it is if it's a constant value
+    { name: "Others", value: parseInt(data.others) }, // You can keep this as it is if it's a constant value
   ];
 
   // Dummy data for the dropdown options
