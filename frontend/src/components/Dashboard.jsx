@@ -221,6 +221,12 @@ const Dashboard = () => {
     }
   };
 
+  if(!listResult.length){
+    disData();
+    handleList();
+  }
+  
+
   // Update the boxData array with appropriate icons
   const boxData = [
     {
