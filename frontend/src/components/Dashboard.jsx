@@ -53,7 +53,6 @@ const Dashboard = () => {
   const [searchResult, setSearchResult] = useState(null);
   const [listResult, setListResult] = useState([]);
 
-
   useEffect(() => {
     disData();
     // handleList();
@@ -66,10 +65,8 @@ const Dashboard = () => {
       (item) => item.firStage === "Pending"
     );
     setPendingCasesCount(pendingCases.length);
-    
   }, [token, searchResult]); // This effect runs only once after the initial render
 
-  
   // Log the listResult whenever it changes
   useEffect(() => {
     console.log("List Result:", listResult);
@@ -89,9 +86,7 @@ const Dashboard = () => {
     setSearchResult(null);
   };
 
-// Inside the handleSearch function
-
-
+  // Inside the handleSearch function
 
   const handleSearch = async () => {
     try {
@@ -99,7 +94,6 @@ const Dashboard = () => {
         `http://localhost:3000/api/v1/search?firNo=${firNo}`
       );
       setSearchResult(response.data);
-      
     } catch (error) {
       console.error("Error searching:", error);
     }
@@ -171,11 +165,10 @@ const Dashboard = () => {
       });
       setEmail(response.data.email);
       // console.log("Data:", response.data);
-      
     } catch (error) {
       toast.error(error.message);
-    }finally{
-     await handleList();
+    } finally {
+      await handleList();
     }
   };
 
@@ -201,9 +194,6 @@ const Dashboard = () => {
 
   // console.log("User Info:", userInfo.email1);
 
-
-
-
   const handleList = async () => {
     try {
       // Check if data.email is defined before using it in the URL
@@ -221,11 +211,10 @@ const Dashboard = () => {
     }
   };
 
-  if(!listResult.length){
+  if (!listResult.length) {
     disData();
     handleList();
   }
-  
 
   // Update the boxData array with appropriate icons
   const boxData = [
@@ -271,7 +260,6 @@ const Dashboard = () => {
     { month: "Dec", cases: parseInt(data.dec) },
   ];
 
-
   // Accumulate cases month by month
   const accumulatedData = lineChartData.map((entry, index) => {
     const accumulatedCases = lineChartData
@@ -295,65 +283,22 @@ const Dashboard = () => {
   const COLORS = ["#4c0519", "#1d4ed8", "#15803d", "#86198f", "#c2410c"];
 
   // Dummy data for the recent cases list
-  const recentList = [
-    {
-      snNumber: 1,
-      firId: "FIR-001",
-      firStage: "Pending",
-      firDate: "2024-03-15",
-      firCrimeType: "Theft",
-    },
-    {
-      snNumber: 2,
-      firId: "FIR-002",
-      firStage: "Stage 2",
-      firDate: "2024-03-16",
-      firCrimeType: "Robbery",
-    },
-    {
-      snNumber: 3,
-      firId: "FIR-003",
-      firStage: "Pending",
-      firDate: "2024-03-17",
-      firCrimeType: "Burglary",
-    },
-    {
-      snNumber: 4,
-      firId: "FIR-004",
-      firStage: "Stage 1",
-      firDate: "2024-03-18",
-      firCrimeType: "Assault",
-    },
-    {
-      snNumber: 5,
-      firId: "FIR-005",
-      firStage: "Stage 2",
-      firDate: "2024-03-19",
-      firCrimeType: "Vandalism",
-    },
-    {
-      snNumber: 6,
-      firId: "FIR-006",
-      firStage: "Pending",
-      firDate: "2024-03-20",
-      firCrimeType: "Fraud",
-    },
-    {
-      snNumber: 7,
-      firId: "FIR-007",
-      firStage: "Stage 1",
-      firDate: "2024-03-21",
-      firCrimeType: "Drug Offense",
-    },
-    {
-      snNumber: 8,
-      firId: "FIR-008",
-      firStage: "Stage 2",
-      firDate: "2024-03-22",
-      firCrimeType: "Homicide",
-    },
-    // Add more dummy data as needed
-  ];
+  const defaultRecentList = Array.from({ length: 8 }, (_, index) => ({
+    snNumber: index + 1,
+    firId: "",
+    firStage: "",
+    firDate: "",
+    firCrimeType: "",
+  }));
+  
+  const recentList = defaultRecentList.map((item, index) => ({
+    ...item,
+    firId: listResult[index]?.firNo || item.firId,
+    firStage: listResult[index]?.firStage || item.firStage,
+    firDate: listResult[index]?.firDate || item.firDate,
+    firCrimeType: listResult[index]?.crimeGroupName || item.firCrimeType,
+  }));
+  
 
   return (
     <div ref={dashboardRef} className="flex h-screen">

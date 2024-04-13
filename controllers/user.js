@@ -36,7 +36,7 @@ const login = async (req, res) => {
 const search2 = async (req, res) => {
   const { email } = req.query;
   try {
-    const results = await User.find({ email }).limit(5);
+    const results = await User.find({ email }).limit(8);
     if (results.length > 0) {
       res.status(200).json(results);
     } else {
