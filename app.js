@@ -11,9 +11,10 @@ const authenticateUser = require('./middleware/auth'); // Import the middleware
 // Import and use searchRoutes
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow only requests from this origin
+    origin: '*', // Allow requests from all origins
     credentials: true, // Allow cookies to be sent with the request
 }));
+
 
 app.use(express.json());
 app.use('/api/v1/dashboard', authenticateUser); // Apply middleware to dashboard route

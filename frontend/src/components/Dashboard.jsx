@@ -91,7 +91,7 @@ const Dashboard = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/search?firNo=${firNo}`
+        `http://www.shadow-team.shop:3000/api/v1/search?firNo=${firNo}`
       );
       setSearchResult(response.data);
     } catch (error) {
@@ -113,7 +113,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/dashboard",
+        "http://www.shadow-team.shop:3000/api/v1/dashboard",
         axiosConfig
       );
       // console.log("Response from API:", response.data);
@@ -199,7 +199,7 @@ const Dashboard = () => {
       // Check if data.email is defined before using it in the URL
       if (userInfo.email1) {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/search2?email=${userInfo.email1}`
+          `http://www.shadow-team.shop:3000/api/v1/search2?email=${userInfo.email1}`
         );
         setListResult(response.data);
         // console.log("List Result:", listResult); // Log the search result instead of displaying it
