@@ -160,7 +160,7 @@ export default function Home({ language }) {
       };
       try {
         const response = await axios.post(
-          "http://www.shadow-team.shop:3000/api/v1/login",  
+          "http://localhost:3000/api/v1/login",  
           formData
         );
         localStorage.setItem("auth", JSON.stringify(response.data.token));
